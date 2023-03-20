@@ -2,13 +2,15 @@ import { useState, FC, ChangeEvent } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Task } from "./Interfaces";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>(""); // we should define type
   const [deadline, setDeadline] = useState<number>(0);
-  const [todo, setTodo] = useState([]);
+  const [todoList, setTodoList] = useState<Task[]>([]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => { //if a function is not returning anything we set it to void
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    //if a function is not returning anything we set it to void
     //we are changing html input element
     if (e.target.name === "task") {
       setTask(e.target.value);
@@ -16,6 +18,14 @@ const App: FC = () => {
       setDeadline(Number(e.target.value));
     }
   };
+
+  //each todo that we will add to the array should be an object
+  const addTask = (): void => {
+    const newTask = {taskName: task, deadline: deadline}
+    setTodoList([...todoList, newTask])
+  };
+
+
 
   return (
     <div className="App">
@@ -34,7 +44,7 @@ const App: FC = () => {
             onChange={handleChange}
           />
         </div>
-        <button>Add Task</button>
+        <button onClick={addTask}>Add Task</button>
       </div>
       <div className="todo-list"></div>
     </div>
