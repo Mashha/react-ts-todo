@@ -1,8 +1,8 @@
 import { useState, FC, ChangeEvent } from "react";
-import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { Task } from "./Interfaces";
+import TodoTask from "./Components/TodoTask";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>(""); // we should define type
@@ -48,7 +48,12 @@ const App: FC = () => {
         </div>
         <button onClick={addTask}>Add Task</button>
       </div>
-      <div className="todo-list"></div>
+      <div className="todo-list">
+        {/* map through to do list */}
+        {todoList.map((task: Task, key: number) => {
+          return <TodoTask key={key} task={task}/>;
+        })}
+      </div>
     </div>
   );
 };
