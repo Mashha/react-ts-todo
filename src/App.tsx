@@ -21,11 +21,11 @@ const App: FC = () => {
 
   //each todo that we will add to the array should be an object
   const addTask = (): void => {
-    const newTask = {taskName: task, deadline: deadline}
-    setTodoList([...todoList, newTask])
+    const newTask = { taskName: task, deadline: deadline };
+    setTodoList([...todoList, newTask]);
+    setTask("");
+    setDeadline(0);
   };
-
-
 
   return (
     <div className="App">
@@ -36,12 +36,14 @@ const App: FC = () => {
             placeholder="Task..."
             name="task"
             onChange={handleChange}
+            value={task}
           />
           <input
             type="number"
             placeholder="Deadline(in days)"
             name="deadline"
             onChange={handleChange}
+            value={deadline}
           />
         </div>
         <button onClick={addTask}>Add Task</button>
