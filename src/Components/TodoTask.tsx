@@ -1,8 +1,9 @@
 import React from 'react'
 import { Task } from '../Interfaces'
 
-interface taskProps {
+interface taskProps { 
     task: Task
+    completeTask(taskNameToDelete: string): void // add a function as a type
 }
 
 const TodoTask =(props: taskProps)=> {
@@ -12,7 +13,7 @@ const TodoTask =(props: taskProps)=> {
        <span>{props.task.taskName}</span>
        <span>{props.task.deadline}</span>
       </div>
-      <button>X</button>
+      <button onClick={() => props.completeTask(props.task.taskName)}>X</button>
     </div>
   )
 }
