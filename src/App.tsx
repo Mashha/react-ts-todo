@@ -8,7 +8,7 @@ const App: FC = () => {
   const [deadline, setDeadline] = useState<number>(0);
   const [todo, setTodo] = useState([]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => { //if a function is not returning anything we set it to void
     //we are changing html input element
     if (e.target.name === "task") {
       setTask(e.target.value);
